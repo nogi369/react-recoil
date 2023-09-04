@@ -2,6 +2,7 @@ import TodoListStats from "./TodoListStats";
 import TodoItemCreator from "./TodoItemCreator";
 import { useRecoilValue } from "recoil";
 import { todoListAtom } from "../atom";
+import TodoItem from "./TodoItem";
 
 // UI
 function TodoList() {
@@ -14,7 +15,7 @@ function TodoList() {
       <TodoListStats />
       <TodoItemCreator />
       {todoList.map((item) => (
-        <div key={item.id}>{item.title}</div>
+        <TodoItem key={item.id} item={item} />
       ))}
     </>
   );
@@ -46,4 +47,10 @@ export default TodoList;
  * defaultの代わりにgetプロパティとsetプロパティを設定することができる
  * getプロパティのget関数はselectorの中のみで利用することができ、atomやselectorにアクセスすることができる
  * setプロパティを利用してatomの値を更新することもできる
+ */
+
+/**
+ * mapで要素を展開して表示するコーディングの変更
+ * <div key={item.id}></div>
+ * <TodoItem key={item.id} item={item} />
  */
