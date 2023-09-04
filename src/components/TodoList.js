@@ -1,18 +1,18 @@
+import TodoListStats from "./TodoListStats";
+import TodoItemCreator from "./TodoItemCreator";
 import { useRecoilValue } from "recoil";
 import { todoListAtom } from "../atom";
-import TodoListStats from "./TodoListStats";
 
 // UI
 function TodoList() {
-  // useRecoilValue = 更新できない(読み込み専用)
-  const todoList = useRecoilValue(todoListAtom); // atomで設定した状態を取得
-  console.log(todoList);
+  const todoList = useRecoilValue(todoListAtom);
 
   // ブラウザ上に表示
   return (
     <>
       <h1>RecoilによるTodoアプリ</h1>
       <TodoListStats />
+      <TodoItemCreator />
       {todoList.map((item) => (
         <div key={item.id}>{item.title}</div>
       ))}
