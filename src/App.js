@@ -1,8 +1,5 @@
 function App() {
-  return (
-    <div>
-    </div>
-  );
+  return <div style={{}}></div>;
 }
 
 export default App;
