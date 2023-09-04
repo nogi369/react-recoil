@@ -15,9 +15,21 @@ function TodoItem({ item }) {
     ];
     setTodoList(newTodoList);
   };
+  const toggleItemCompletion = () => {
+    const index = todoList.findIndex((listItem) => listItem.id === item.id);
+    const newTodoList = [
+      ...todoList.slice(0, index),
+      { ...item, isComplete: !item.isComplete }, //isCompleteプロパティの値を反転させる
+      ...todoList.slice(index + 1),
+    ];
+    setTodoList(newTodoList);
+  };
 
   return (
     <div>
+      <button onClick={toggleItemCompletion}>
+        {item.isComplete ? "完" : "未"}
+      </button>
       {item.title}
       <button onClick={deleteItem} style={{ cursor: "pointer" }}>
         Delete
