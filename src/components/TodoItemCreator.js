@@ -36,7 +36,7 @@ function TodoItemCreator() {
 
 export default TodoItemCreator;
 
-// keyを一意に設定するための関数(mapで使うkey属性の設定)
+// idを一意に設定するための関数(mapで使うkey属性の設定)
 let id = 1;
 function getId() {
   return id++;
