@@ -1,18 +1,29 @@
 import TodoListStats from "./TodoListStats";
 import TodoItemCreator from "./TodoItemCreator";
-import { useRecoilValue } from "recoil";
-import { todoListAtom } from "../atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import TodoItem from "./TodoItem";
+import { todoListFilterAtom } from "../todo";
+import { filteredTodoListState } from "../filteredTodoListState";
 
 // UI
 function TodoList() {
-  const todoList = useRecoilValue(todoListAtom);
+  const todoList = useRecoilValue(filteredTodoListState);
+  const [filter, setFilter] = useRecoilState(todoListFilterAtom);
+
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   // ブラウザ上に表示
   return (
     <>
       <h1>RecoilによるTodoアプリ</h1>
       <TodoListStats />
+      <select value={filter} onChange={handleChange}>
+        <option value="すべて">すべて</option>
+        <option value="完了">完了</option>
+        <option value="未完了">未完了</option>
+      </select>
       <TodoItemCreator />
       {todoList.map((item) => (
         <TodoItem key={item.id} item={item} />
@@ -20,6 +31,7 @@ function TodoList() {
     </>
   );
 }
+// optionタグvalue属性 http://html5.cyberlab.info/elements/forms/option-value.html
 
 export default TodoList;
 

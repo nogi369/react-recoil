@@ -3,6 +3,7 @@ import { todoListAtom } from "../atom";
 
 function TodoItem({ item }) {
   const [todoList, setTodoList] = useRecoilState(todoListAtom);
+  // console.log(todoList);
 
   const deleteItem = () => {
     // idどうしが一致する削除対象の配列の番号を取得する
