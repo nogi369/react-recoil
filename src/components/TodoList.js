@@ -1,29 +1,20 @@
 import TodoListStats from "./TodoListStats";
 import TodoItemCreator from "./TodoItemCreator";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import TodoItem from "./TodoItem";
-import { todoListFilterAtom } from "../todo";
 import { filteredTodoListState } from "../filteredTodoListState";
+import TodoListFilters from "./TodoListFilter";
 
 // UI
 function TodoList() {
   const todoList = useRecoilValue(filteredTodoListState);
-  const [filter, setFilter] = useRecoilState(todoListFilterAtom);
-
-  const handleChange = (e) => {
-    setFilter(e.target.value);
-  };
 
   // ブラウザ上に表示
   return (
     <>
       <h1>RecoilによるTodoアプリ</h1>
       <TodoListStats />
-      <select value={filter} onChange={handleChange}>
-        <option value="すべて">すべて</option>
-        <option value="完了">完了</option>
-        <option value="未完了">未完了</option>
-      </select>
+      <TodoListFilters />
       <TodoItemCreator />
       {todoList.map((item) => (
         <TodoItem key={item.id} item={item} />
